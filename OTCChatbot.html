@@ -4,7 +4,7 @@
     <style>
         body {
             font-family: 'Proxima Nova', Arial, sans-serif;
-            font-size: 14px;
+            font-size: 16px;
             background: transparent;
             display: flex;
             justify-content: center;
@@ -41,7 +41,7 @@
             margin-right: 10px;
         }
         .message {
-            background: #2c2b28;
+            background: #f1f1f1;
             padding: 8px 12px;
             border-radius: 10px;
         }
@@ -49,7 +49,7 @@
             display: block;
             width: 100%;
             text-align: left;
-            background: #0078D7;
+            background: #2c2b28;
             color: white;
             border: none;
             padding: 8px;
@@ -58,27 +58,27 @@
             cursor: pointer;
         }
         .option-btn:hover {
-            background: #005bb5;
+            background: #ff6a00;
         }
     </style>
     <script>
         let steps = {
             start: {
-                message: "What do you need help with?",
+                message: "Need help with any EOM/EOQ Process?",
                 options: {
-                    "Billing Issues": "billing",
-                    "Technical Support": "technical",
+                    "Yes": "Yes",
+                    "No": "No",
                     "General Inquiry": "general"
                 }
             },
-            billing: {
-                message: "What billing issue do you have?",
+            yes: {
+                message: "What EOM/EOQ Assistance you need?",
                 options: {
-                    "View Invoice": "invoice",
-                    "Payment Issues": "payment"
+                    "Order Form Discrepancy": "OrderForm",
+                    "Activate on Behalf": "Activate"
                 }
             },
-            technical: {
+            No: {
                 message: "What technical issue are you experiencing?",
                 options: {
                     "Login Issues": "login",
@@ -88,10 +88,10 @@
             general: {
                 message: "For general inquiries, visit our Help Center: <a href='https://support.example.com'>Click Here</a>"
             },
-            invoice: {
+            OrderForm: {
                 message: "To view your invoice, visit: <a href='https://billing.example.com'>Billing Portal</a>"
             },
-            payment: {
+            Activate: {
                 message: "For payment concerns, contact support: <a href='https://support.example.com/payments'>Click Here</a>"
             },
             login: {
