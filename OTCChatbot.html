@@ -60,6 +60,20 @@
         .option-btn:hover {
             background: #ff6a00;
         }
+        .action-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 48%;
+            float: left;
+        }
+        .action-btn:hover {
+            background: #45a049;
+        }
     </style>
     <script>
         let steps = {
@@ -92,15 +106,45 @@
                 message: "To view your invoice, visit: <a href='https://billing.example.com'>Billing Portal</a>"
             },
             Activate: {
-                message: "For payment concerns, contact support: <a href='https://support.example.com/payments'>Click Here</a>"
+                message: "For Activate on Behalf Process, Please first select which Leadership the Deal is under",
+                options: {
+                    "Joe Jacobs": "Joe",
+                    "Alex Shumway-Jones": "ASJ",
+                    "Ayub Mohammed": "Ayub",
+                    "Brandon Thomas": "Brandon",
+                    "Jeffrey Yakubik": "Jeff",
+                    "Yves Desmet": "Yves",
+                    "Stacy Malkin Schwartz": "Stacy",
+                    "Sandra Krief": "Sandra"
+                }
             },
-            login: {
-                message: "Try resetting your password: <a href='https://support.example.com/login-help'>Reset Password</a>"
+            Joe: {
+                message: "Non - EOM Period:<br>- Request in the \"OPSOM - Activate on Behalf Request\" with below details. Request will be subject for review and approval by OM Leadership.<br>...<br>EOM Period (Last 3 Days):<br>- Proactively activate on behalf for accounts under invoicing regardless if AE requested or not"
             },
-            call_quality: {
-                message: "Check our call quality troubleshooting guide: <a href='https://support.example.com/call-quality'>Click Here</a>"
+            ASJ: {
+                message: "Non - EOM Period:<br>- Request in the \"OPSOM - Activate on Behalf Request\" with below details. Request will be subject for review and approval by OM Leadership.<br>...<br>EOM Period (Last 3 Days):<br>- Proactively activate on behalf for accounts under invoicing regardless if AE requested or not"
+            },
+            Ayub: {
+                message: "Non - EOM Period:<br>- Send Activate on Behalf email verbiage to requestor<br>- If requestor insists to have the account activated, ask for justification<br>...<br>EOM Period (Last 3 Days):<br>- Proactively activate on behalf for accounts under invoicing as long as AE requested for OM to action."
+            },
+            Brandon: {
+                message: "Non - EOM Period:<br>- Send Activate on Behalf email verbiage to requestor<br>- If requestor insists to have the account activated, ask for justification<br>...<br>EOM Period (Last 3 Days):<br>- Proactively activate on behalf for accounts under invoicing as long as AE requested for OM to action."
+            },
+            Jeffrey: {
+                message: "Non - EOM Period:<br>- Send Activate on Behalf email verbiage to requestor<br>- If requestor insists to have the account activated, ask for justification<br>...<br>EOM Period (Last 3 Days):<br>- Proactively activate on behalf for accounts under invoicing as long as AE requested for OM to action."
+            },
+            Yves: {
+                message: "Non - EOM Period:<br>- Send Activate on Behalf email verbiage to requestor<br>- If requestor insists to have the account activated, ask for justification<br>...<br>EOM Period (Last 3 Days):<br>- Proactively activate on behalf for accounts under invoicing as long as AE requested for OM to action."
+            },
+            Stacy: {
+                message: "Non - EOM Period:<br>- Send Activate on Behalf email verbiage to requestor<br>- If requestor insists to have the account activated, ask for justification<br>...<br>EOM Period (Last 3 Days):<br>- Proactively activate on behalf for accounts under invoicing as long as AE requested for OM to action."
+            },
+            Sandra: {
+                message: "Non - EOM Period:<br>- Send Activate on Behalf email verbiage to requestor<br>- If requestor insists to have the account activated, ask for justification<br>...<br>EOM Period (Last 3 Days):<br>- Proactively activate on behalf for accounts under invoicing as long as AE requested for OM to action."
             }
         };
+        
+        let history = [];  // Track navigation history
         
         function loadStep(step) {
             let chatBox = document.getElementById("chat-box");
@@ -117,11 +161,34 @@
                     button.className = "option-btn";
                     button.innerText = option;
                     button.onclick = function() {
+                        history.push(step);  // Track the current step in history
                         loadStep(steps[step].options[option]);
                     };
                     chatBox.appendChild(button);
                 });
             }
+            
+            // Add Back Button if history is available
+            if (history.length > 0) {
+                let backButton = document.createElement("button");
+                backButton.className = "action-btn";
+                backButton.innerText = "Back";
+                backButton.onclick = function() {
+                    let previousStep = history.pop();
+                    loadStep(previousStep);  // Go back to the previous step
+                };
+                chatBox.appendChild(backButton);
+            }
+            
+            // Add Start Over Button
+            let startOverButton = document.createElement("button");
+            startOverButton.className = "action-btn";
+            startOverButton.innerText = "Start Over";
+            startOverButton.onclick = function() {
+                history = [];  // Clear history
+                loadStep("start");  // Go back to the first step
+            };
+            chatBox.appendChild(startOverButton);
         }
         
         window.onload = function() {
