@@ -14,14 +14,19 @@
         .chat-container {
             width: 350px;
             max-width: 90%;
+            height: 80vh; /* Adjusted height for better visibility */
             border-radius: 10px;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
         .chat-box {
             background: rgba(255, 106, 0, 0.8); /* Semi-transparent orange */
             padding: 10px;
             border-radius: 15px;
             border: none;
+            flex-grow: 1;
+            overflow-y: auto; /* Make it scrollable */
         }
         .chat-message {
             display: flex;
@@ -61,7 +66,7 @@
             background: #ff6a00;
         }
         .action-btn {
-            background: #4CAF50;
+            background: #ff6a00;
             color: white;
             border: none;
             padding: 8px;
